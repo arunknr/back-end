@@ -1,14 +1,9 @@
-package hello;
+package shareForcast;
 
-import domain.Department;
-import domain.Employee;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import util.HibernateUtil;
-
-import java.util.List;
+import shareForcast.util.HibernateUtil;
 
 @SpringBootApplication
 public class Application {
@@ -26,13 +21,13 @@ public class Application {
         session.save(new Employee("Captain Nemo",department));
 
         session.getTransaction().commit();*/
-
-        Query q = session.createQuery("From Employee ");
-
-        List<Employee> resultList = q.list();
-        System.out.println("num of employess:" + resultList.size());
-        for (Employee next : resultList) {
-            System.out.println("next employee: " + next);
-        }
+//
+//        Query q = session.createQuery("From Employee ");
+//
+//        List<Employee> resultList = q.list();
+//        System.out.println("num of employess:" + resultList.size());
+//        for (Employee next : resultList) {
+//            System.out.println("next employee: " + next);
+//        }
     }
 }
