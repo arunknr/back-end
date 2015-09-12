@@ -21,6 +21,7 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="shareForcast.model.User" />
+        <mapping class="shareForcast.model.ShareKeyword" />
 
     </session-factory>
 </hibernate-configuration>
