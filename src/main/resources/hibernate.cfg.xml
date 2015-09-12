@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name="connection.url">jdbc:mysql://localhost/mydb</property>
+        <property name="connection.url">jdbc:mysql://localhost/shareForcast</property>
         <property name="connection.username">root</property>
         <property name="connection.password">password</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -20,8 +20,7 @@
         <property name="connection.pool_size">1</property>
         <property name="current_session_context_class">thread</property>
 
-        <!--<mapping class="shareForcast.domain.Employee" />-->
-        <!--<mapping class="shareForcast.domain.Department" />-->
+        <mapping class="shareForcast.model.User" />
 
     </session-factory>
 </hibernate-configuration>
