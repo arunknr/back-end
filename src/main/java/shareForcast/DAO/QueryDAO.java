@@ -23,7 +23,7 @@ public class QueryDAO {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM CompanyShareValue");
+            Query query = session.createQuery(generatedQuery);
             List list = query.list();
             Iterator iterator = list.iterator();
             while(iterator.hasNext()){
