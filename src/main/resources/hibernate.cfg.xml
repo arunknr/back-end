@@ -22,6 +22,7 @@
 
         <mapping class="shareForcast.model.User" />
         <mapping class="shareForcast.model.ShareKeyword" />
+        <mapping class="shareForcast.model.CompanyShareValue" />
 
     </session-factory>
 </hibernate-configuration>
