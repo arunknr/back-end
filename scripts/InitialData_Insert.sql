@@ -6,13 +6,13 @@ INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("Stock Turnover Ratio", 
 INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("Net Profit Margin", 4);
 INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("EBIT Margins", 5);
 INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("PE Ratio", 6);
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES (">", "");
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("<", "");
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("=", "");
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("<=", "");
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES (">=", "");
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("AND", "");
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("OR", "");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES (">");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES ("<");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES ("=");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES ("<=");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES (">=");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES ("AND");
+INSERT INTO SHAREKEYWORDS (key_words) VALUES ("OR");
 
 INSERT INTO COMPANYINFORMATION (accord_id, shian_id, bse_id, nse_id, company_name, bse_listed, nse_listed, group_name, market_cap) VALUES
 (100325, 100325, 500325,"RIL","Reliance Industries Limited", 1, 1, "Crude Oil", "Large Cap");

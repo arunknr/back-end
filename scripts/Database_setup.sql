@@ -43,6 +43,6 @@ CREATE TABLE RATIOS
 (
 ratio_id int NOT NULL,
 ratio_name varchar(255) NOT NULL,
-query_value varchar(255),
+query_value varchar(1000),
 PRIMARY KEY (ratio_id)
 );
