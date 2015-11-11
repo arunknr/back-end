@@ -111,4 +111,49 @@ public class CompanyInfo {
     public void setMarketCap(String marketCap) {
         this.marketCap = marketCap;
     }
+
+    @Override
+    public String toString() {
+        return "CompanyInfo{" +
+                "id=" + id +
+                ", bseId=" + bseId +
+                ", nseId='" + nseId + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", bseListed=" + bseListed +
+                ", nseListed=" + nseListed +
+                ", groupName='" + groupName + '\'' +
+                ", marketCap='" + marketCap + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CompanyInfo that = (CompanyInfo) o;
+
+        if (bseId != that.bseId) return false;
+        if (bseListed != that.bseListed) return false;
+        if (nseListed != that.nseListed) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (nseId != null ? !nseId.equals(that.nseId) : that.nseId != null) return false;
+        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
+        if (groupName != null ? !groupName.equals(that.groupName) : that.groupName != null) return false;
+        return !(marketCap != null ? !marketCap.equals(that.marketCap) : that.marketCap != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + bseId;
+        result = 31 * result + (nseId != null ? nseId.hashCode() : 0);
+        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
+        result = 31 * result + (bseListed ? 1 : 0);
+        result = 31 * result + (nseListed ? 1 : 0);
+        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+        result = 31 * result + (marketCap != null ? marketCap.hashCode() : 0);
+        return result;
+    }
 }
