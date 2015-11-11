@@ -1,19 +1,23 @@
 package shareForcast.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table
+@Table(name = "USERINFORMATION")
 public class User {
 
     @Id
     @GeneratedValue
+    @NotNull
     @Column(name = "id")
     private int id;
 
+    @NotNull
     @Column(name = "user_name")
     private String userName;
 
+    @NotNull
     @Column(name = "password")
     private String password;
 
@@ -57,15 +61,15 @@ public class User {
 
         User user = (User) o;
 
-        if (!userName.equals(user.userName)) return false;
-        return password.equals(user.password);
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        return !(password != null ? !password.equals(user.password) : user.password != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = userName.hashCode();
-        result = 31 * result + password.hashCode();
+        int result = userName != null ? userName.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 }

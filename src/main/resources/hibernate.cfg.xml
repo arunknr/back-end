@@ -22,7 +22,11 @@
 
         <mapping class="shareForcast.model.User" />
         <mapping class="shareForcast.model.ShareKeyword" />
-        <mapping class="shareForcast.model.CompanyShareValue" />
+        <mapping class="shareForcast.model.BalanceSheetAttributes" />
+        <mapping class="shareForcast.model.BalanceSheetAttributeValues" />
+        <mapping class="shareForcast.model.CompanyInfo" />
+        <mapping class="shareForcast.model.Period" />
+        <mapping class="shareForcast.model.Ratios" />
 
     </session-factory>
 </hibernate-configuration>

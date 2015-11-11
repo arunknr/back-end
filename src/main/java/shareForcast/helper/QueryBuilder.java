@@ -14,6 +14,7 @@ public class QueryBuilder {
     public String createQuery(String query) {
         query = query.toLowerCase().trim();
         StringBuilder queryStringBuilder = new StringBuilder();
+        //TODO: Need to recreate
         queryStringBuilder.append("FROM CompanyShareValue")
                 .append(" ")
                 .append("WHERE")

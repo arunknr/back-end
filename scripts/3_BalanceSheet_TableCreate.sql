@@ -14,7 +14,5 @@ time_id int NOT NULL,
 report_period int NOT NULL,
 balancesheet_id int NOT NULL,
 balancesheet_value varchar(255),
-PRIMARY KEY (shian_id,time_id,report_period,balancesheet_id,balancesheet_value)
+PRIMARY KEY (shian_id,time_id,report_period,balancesheet_id)
 );
-
-

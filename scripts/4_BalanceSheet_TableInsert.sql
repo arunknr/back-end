@@ -1066,7 +1066,7 @@ VALUES
 INSERT INTO BALANCESHEETVALUES (shian_id, time_id, report_period, balancesheet_id, balancesheet_value) 
 VALUES
 (100325,5,201503,494,65637);
-INSERT INTO BALANCESHEETVALUES (shian_id, time_id, report_period, balancesheet_id, balancesheet_value) 
+INSERT INTO BALANCESHEbETVALUES (shian_id, time_id, report_period, balancesheet_id, balancesheet_value)
 VALUES
 (100325,5,201503,506,397785);
 INSERT INTO BALANCESHEETVALUES (shian_id, time_id, report_period, balancesheet_id, balancesheet_value) 
