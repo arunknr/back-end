@@ -5,7 +5,7 @@ USE shareForcast;
 CREATE TABLE USERINFORMATION
 (
 id int NOT NULL AUTO_INCREMENT,
-user_name varchar(255) NOT NULL,
+username varchar(255) NOT NULL,
 password varchar(255) NOT NULL,
 PRIMARY KEY (id)
 );
@@ -20,8 +20,8 @@ PRIMARY KEY (id)
 
 CREATE TABLE COMPANYINFORMATION
 (
+company_id int NOT NULL,
 accord_id int NOT NULL,
-shian_id int NOT NULL,
 bse_id int,
 nse_id varchar(25),
 company_name varchar(255) NOT NULL,
@@ -29,20 +29,31 @@ bse_listed TINYINT(1) NOT NULL,
 nse_listed TINYINT(1) NOT NULL,
 group_name varchar(255),
 market_cap varchar(255),
-PRIMARY KEY (accord_id, shian_id)
+PRIMARY KEY (company_id)
 );
 
 CREATE TABLE PERIOD
 (
-time_id int NOT NULL,
-time_value varchar(255) NOT NULL,
-PRIMARY KEY (time_id)
+id int NOT NULL,
+name varchar(255) NOT NULL,
+PRIMARY KEY (id)
 );
 
 CREATE TABLE RATIOS
 (
+id int NOT NULL,
+name varchar(255) NOT NULL,
+formula varchar(1000),
+PRIMARY KEY (id)
+);
+
+CREATE TABLE RATIOVALUES
+(
+company_id int NOT NULL,
+time_id int NOT NULL,
+report_period int NOT NULL,
 ratio_id int NOT NULL,
-ratio_name varchar(255) NOT NULL,
-query_value varchar(1000),
-PRIMARY KEY (ratio_id)
+ratio_value double(10,2),
+PRIMARY KEY (company_id,time_id,report_period,ratio_id),
+FOREIGN KEY (ratio_id) REFERENCES RATIOS(id)
 );
