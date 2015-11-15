@@ -1,32 +1,45 @@
 package shareForcast.helper;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class QueryBuilder {
-    static HashMap<String, String> keyWordColumnMap = new HashMap<>();
 
-    public QueryBuilder() {
-        keyWordColumnMap.put("face value", "faceValue");
-        keyWordColumnMap.put("market cap", "marketCap");
-    }
-
-    public String createQuery(String query) {
+    public String createQuery(String query, HashMap<String, Integer> shareKeywords) {
         query = query.toLowerCase().trim();
+        String[] queryStrings = query.split(" ");
         StringBuilder queryStringBuilder = new StringBuilder();
-        //TODO: Need to recreate
-        queryStringBuilder.append("FROM CompanyShareValue")
-                .append(" ")
-                .append("WHERE")
-                .append(" ")
-                .append(transformQuery(query));
-        return queryStringBuilder.toString();
-    }
+        queryStringBuilder.append("select * from ");
 
-    private String transformQuery(String query) {
-        for (Map.Entry<String, String> entry : keyWordColumnMap.entrySet()) {
-            query = query.replace(entry.getKey(), entry.getValue());
+        StringBuilder whereQueryBuilder = new StringBuilder();
+        whereQueryBuilder.append(" where").append(" ");
+
+        int ratioQueryCounter = 0;
+
+        for (String queryString : queryStrings) {
+            if(shareKeywords.containsKey(queryString) && shareKeywords.get(queryString) != null) {
+
+                Integer ratioId = shareKeywords.get(queryString);
+                ratioQueryCounter++;
+
+                if(ratioQueryCounter > 1)
+                    queryStringBuilder.append(" join");
+                queryStringBuilder
+                        .append(" (select company_id, ratio_value as ratio").append(ratioQueryCounter)
+                        .append(" from RATIOVALUES where ratio_id = ").append(ratioId).append(") as t").append(ratioQueryCounter);
+                if(ratioQueryCounter > 1){
+                    queryStringBuilder
+                            .append(" on t1.company_id = t").append(ratioQueryCounter).append(".company_id");
+                }
+
+                whereQueryBuilder
+                        .append(" ratio").append(ratioQueryCounter);
+
+            }else {
+                whereQueryBuilder
+                        .append(" ").append(queryString);
+            }
         }
-        return query;
+
+        return queryStringBuilder.append(whereQueryBuilder.toString()).toString();
     }
 }
