@@ -27,6 +27,7 @@
         <mapping class="shareForcast.model.CompanyInfo" />
         <mapping class="shareForcast.model.Period" />
         <mapping class="shareForcast.model.Ratios" />
+        <mapping class="shareForcast.model.RatioAttributeValues" />
 
     </session-factory>
 </hibernate-configuration>

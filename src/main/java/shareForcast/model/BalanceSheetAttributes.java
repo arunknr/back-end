@@ -13,8 +13,8 @@ public class BalanceSheetAttributes {
     int id;
 
     @NotNull
-    @Column(name = "level_id")
-    int levelId;
+    @Column(name = "level_indicator")
+    int levelIndicator;
 
     @Column(name = "value_required", columnDefinition = "BIT")
     boolean valueRequired;
@@ -22,15 +22,15 @@ public class BalanceSheetAttributes {
     @Column(name = "bold_required", columnDefinition = "BIT")
     boolean boldRequired;
 
-    @Column(name = "balancesheet_name")
+    @Column(name = "name")
     String name;
 
     public BalanceSheetAttributes() {
     }
 
-    public BalanceSheetAttributes(int id, int levelId, boolean valueRequired, boolean boldRequired, String name) {
+    public BalanceSheetAttributes(int id, int levelIndicator, boolean valueRequired, boolean boldRequired, String name) {
         this.id = id;
-        this.levelId = levelId;
+        this.levelIndicator = levelIndicator;
         this.valueRequired = valueRequired;
         this.boldRequired = boldRequired;
         this.name = name;
@@ -44,12 +44,12 @@ public class BalanceSheetAttributes {
         this.id = id;
     }
 
-    public int getLevelId() {
-        return levelId;
+    public int getLevelIndicator() {
+        return levelIndicator;
     }
 
-    public void setLevelId(int levelId) {
-        this.levelId = levelId;
+    public void setLevelIndicator(int levelId) {
+        this.levelIndicator = levelId;
     }
 
     public boolean isValueRequired() {

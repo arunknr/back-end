@@ -12,46 +12,46 @@ public class Ratios {
 
     @Id
     @NotNull
-    @Column(name = "ratio_id")
-    int ratioId;
+    @Column(name = "id")
+    int id;
 
     @NotNull
-    @Column(name = "ratio_name")
-    String ratioName;
+    @Column(name = "name")
+    String name;
 
-    @Column(name = "query_value")
-    String queryValue;
+    @Column(name = "formula")
+    String formula;
 
     public Ratios() {
     }
 
-    public Ratios(int ratioId, String ratioName, String queryValue) {
-        this.ratioId = ratioId;
-        this.ratioName = ratioName;
-        this.queryValue = queryValue;
+    public Ratios(int id, String name, String formula) {
+        this.id = id;
+        this.name = name;
+        this.formula = formula;
     }
 
-    public int getRatioId() {
-        return ratioId;
+    public int getId() {
+        return id;
     }
 
-    public void setRatioId(int ratioId) {
-        this.ratioId = ratioId;
+    public void setId(int ratioId) {
+        this.id = ratioId;
     }
 
-    public String getRatioName() {
-        return ratioName;
+    public String getName() {
+        return name;
     }
 
-    public void setRatioName(String ratioName) {
-        this.ratioName = ratioName;
+    public void setName(String ratioName) {
+        this.name = ratioName;
     }
 
-    public String getQueryValue() {
-        return queryValue;
+    public String getFormula() {
+        return formula;
     }
 
-    public void setQueryValue(String queryValue) {
-        this.queryValue = queryValue;
+    public void setFormula(String formula) {
+        this.formula = formula;
     }
 }

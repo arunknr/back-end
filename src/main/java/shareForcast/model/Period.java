@@ -12,34 +12,34 @@ public class Period {
 
     @Id
     @NotNull
-    @Column(name = "time_id")
-    int time_id;
+    @Column(name = "id")
+    int id;
 
     @NotNull
-    @Column(name = "time_value")
-    String timeValue;
+    @Column(name = "name")
+    String name;
 
     public Period() {
     }
 
-    public Period(int time_id, String timeValue) {
-        this.time_id = time_id;
-        this.timeValue = timeValue;
+    public Period(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public int getTime_id() {
-        return time_id;
+    public int getId() {
+        return id;
     }
 
-    public void setTime_id(int time_id) {
-        this.time_id = time_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getTimeValue() {
-        return timeValue;
+    public String getName() {
+        return name;
     }
 
-    public void setTimeValue(String timeValue) {
-        this.timeValue = timeValue;
+    public void setName(String name) {
+        this.name = name;
     }
 }

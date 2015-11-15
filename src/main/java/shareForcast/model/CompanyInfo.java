@@ -8,7 +8,12 @@ import javax.validation.constraints.NotNull;
 public class CompanyInfo {
 
     @Id
-    CompanyInfoPk id;
+    @Column(name = "company_id")
+    int companyId;
+
+    @NotNull
+    @Column(name = "accord_id")
+    int accordId;
 
     @Column(name = "bse_id")
     int bseId;
@@ -37,8 +42,9 @@ public class CompanyInfo {
     public CompanyInfo() {
     }
 
-    public CompanyInfo(CompanyInfoPk id, int bseId, String nseId, String companyName, boolean bseListed, boolean nseListed, String groupName, String marketCap) {
-        this.id = id;
+    public CompanyInfo(int companyId, int accordId, int bseId, String nseId, String companyName, boolean bseListed, boolean nseListed, String groupName, String marketCap) {
+        this.companyId = companyId;
+        this.accordId = accordId;
         this.bseId = bseId;
         this.nseId = nseId;
         this.companyName = companyName;
@@ -48,12 +54,20 @@ public class CompanyInfo {
         this.marketCap = marketCap;
     }
 
-    public CompanyInfoPk getId() {
-        return id;
+    public int getCompanyId() {
+        return companyId;
     }
 
-    public void setId(CompanyInfoPk id) {
-        this.id = id;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public int getAccordId() {
+        return accordId;
+    }
+
+    public void setAccordId(int accordId) {
+        this.accordId = accordId;
     }
 
     public int getBseId() {
@@ -115,7 +129,8 @@ public class CompanyInfo {
     @Override
     public String toString() {
         return "CompanyInfo{" +
-                "id=" + id +
+                "companyId=" + companyId +
+                ", accordId=" + accordId +
                 ", bseId=" + bseId +
                 ", nseId='" + nseId + '\'' +
                 ", companyName='" + companyName + '\'' +
@@ -124,36 +139,5 @@ public class CompanyInfo {
                 ", groupName='" + groupName + '\'' +
                 ", marketCap='" + marketCap + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CompanyInfo that = (CompanyInfo) o;
-
-        if (bseId != that.bseId) return false;
-        if (bseListed != that.bseListed) return false;
-        if (nseListed != that.nseListed) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (nseId != null ? !nseId.equals(that.nseId) : that.nseId != null) return false;
-        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-        if (groupName != null ? !groupName.equals(that.groupName) : that.groupName != null) return false;
-        return !(marketCap != null ? !marketCap.equals(that.marketCap) : that.marketCap != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + bseId;
-        result = 31 * result + (nseId != null ? nseId.hashCode() : 0);
-        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
-        result = 31 * result + (bseListed ? 1 : 0);
-        result = 31 * result + (nseListed ? 1 : 0);
-        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
-        result = 31 * result + (marketCap != null ? marketCap.hashCode() : 0);
-        return result;
     }
 }

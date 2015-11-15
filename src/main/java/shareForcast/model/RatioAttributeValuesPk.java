@@ -5,36 +5,37 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class BalanceSheetAttributeValuesPk implements Serializable {
+public class RatioAttributeValuesPk implements Serializable {
 
-    @Column(name="company_id")
+
+    @Column(name = "company_id")
     int companyId;
 
-    @Column(name="time_id")
+    @Column(name = "time_id")
     int timeId;
 
-    @Column(name="report_period")
+    @Column(name = "report_period")
     int reportPeriod;
 
-    @Column(name="balancesheet_id")
-    int balanceSheetAttrId;
+    @Column(name = "ratio_id")
+    int ratioId;
 
-    public BalanceSheetAttributeValuesPk() {
+    public RatioAttributeValuesPk() {
     }
 
-    public BalanceSheetAttributeValuesPk(int companyId, int timeId, int reportPeriod, int balanceSheetAttrId) {
+    public RatioAttributeValuesPk(int companyId, int timeId, int reportPeriod, int ratioId) {
         this.companyId = companyId;
         this.timeId = timeId;
         this.reportPeriod = reportPeriod;
-        this.balanceSheetAttrId = balanceSheetAttrId;
+        this.ratioId = ratioId;
     }
 
     public int getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(int shianId) {
-        this.companyId = shianId;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public int getTimeId() {
@@ -53,11 +54,11 @@ public class BalanceSheetAttributeValuesPk implements Serializable {
         this.reportPeriod = reportPeriod;
     }
 
-    public int getBalanceSheetAttrId() {
-        return balanceSheetAttrId;
+    public int getRatioId() {
+        return ratioId;
     }
 
-    public void setBalanceSheetAttrId(int balanceSheetAttrId) {
-        this.balanceSheetAttrId = balanceSheetAttrId;
+    public void setRatioId(int ratioId) {
+        this.ratioId = ratioId;
     }
 }

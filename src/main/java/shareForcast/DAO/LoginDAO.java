@@ -20,7 +20,7 @@ public class LoginDAO {
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM User where user_name = :username and password = :password");
+            Query query = session.createQuery("FROM User where username = :username and password = :password");
             query.setString("username", username);
             query.setString("password", password);
             user = (User) query.uniqueResult();

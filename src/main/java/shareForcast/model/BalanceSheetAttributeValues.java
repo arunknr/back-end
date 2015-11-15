@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.DoubleSummaryStatistics;
 
 @Entity
 @Table(name = "BALANCESHEETVALUES")
@@ -13,12 +14,12 @@ public class BalanceSheetAttributeValues {
     BalanceSheetAttributeValuesPk id;
 
     @Column(name = "balancesheet_value")
-    String value;
+    Double value;
 
     public BalanceSheetAttributeValues() {
     }
 
-    public BalanceSheetAttributeValues(BalanceSheetAttributeValuesPk id, String value) {
+    public BalanceSheetAttributeValues(BalanceSheetAttributeValuesPk id, Double value) {
         this.id = id;
         this.value = value;
     }
@@ -31,11 +32,11 @@ public class BalanceSheetAttributeValues {
         this.id = id;
     }
 
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 }
