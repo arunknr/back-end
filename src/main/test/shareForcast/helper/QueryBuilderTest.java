@@ -38,4 +38,6 @@ public class QueryBuilderTest {
 
         assertEquals(expectedQuery, query);
     }
+
+    //TODO: write more test to cover all conditions
 }

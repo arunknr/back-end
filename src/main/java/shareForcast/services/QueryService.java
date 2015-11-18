@@ -1,19 +1,28 @@
 package shareForcast.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import shareForcast.DAO.RatioValueDAO;
 import shareForcast.helper.QueryBuilder;
 import shareForcast.model.ShareKeyword;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class QueryService {
-    HashMap<String, Integer> sharekeywordRatioIdMap;
 
-    public QueryService() {
-        List<ShareKeyword> shareKeywords = new KeywordService().fetch();
+    static HashMap<String, Integer> sharekeywordRatioIdMap;
+    private RatioValueDAO ratioValueDAO;
+
+    @Autowired
+    public QueryService(KeywordService keywordService, RatioValueDAO ratioValueDAO) {
+        this.ratioValueDAO = ratioValueDAO;
+
+        createShareKeyWordRatioMap(keywordService);
+    }
+
+    private void createShareKeyWordRatioMap(KeywordService keywordService) {
+        List<ShareKeyword> shareKeywords = keywordService.fetch();
         for (ShareKeyword shareKeyword : shareKeywords) {
             sharekeywordRatioIdMap.put(shareKeyword.getKeyword(), shareKeyword.getRatioId());
         }
@@ -23,6 +32,6 @@ public class QueryService {
         QueryBuilder queryBuilder = new QueryBuilder();
         String generatedQuery = queryBuilder.createQuery(query, sharekeywordRatioIdMap);
         ArrayList<String> keys = queryBuilder.getKeys(query, sharekeywordRatioIdMap);
-        return new RatioValueDAO().get(generatedQuery, keys);
+        return ratioValueDAO.get(generatedQuery, keys);
     }
 }
