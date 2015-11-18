@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import shareForcast.services.QueryService;
 
+import java.util.HashMap;
+import java.util.List;
+
 @RestController
 public class QueryController {
 
     @RequestMapping(value="/query", method= RequestMethod.GET)
-    public void getResultForQuery(@RequestParam(value = "query") String query) {
-        new QueryService().getValue(query);
+    public List<HashMap<String, String>> getResultForQuery(@RequestParam(value = "query") String query) {
+        return new QueryService().getValue(query);
     }
 }
