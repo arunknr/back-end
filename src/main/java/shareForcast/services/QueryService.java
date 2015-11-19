@@ -11,7 +11,7 @@ import java.util.List;
 
 public class QueryService {
 
-    static HashMap<String, Integer> sharekeywordRatioIdMap;
+    static HashMap<String, Integer> sharekeywordRatioIdMap = new HashMap<>();
     private RatioValueDAO ratioValueDAO;
 
     @Autowired
