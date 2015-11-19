@@ -19,7 +19,7 @@ public class CompanyDetailsController {
     }
 
     @RequestMapping(value="/companyDetails", method= RequestMethod.GET)
-    public CompanyInfo getCompanyDetails(@RequestParam(value = "accordId") int accordId, @RequestParam(value = "shianId") int shianId) {
-        return companyInfoService.get(accordId, shianId);
+    public CompanyInfo getCompanyDetails(@RequestParam(value = "accordId") int accordId, @RequestParam(value = "companyId") int companyId) {
+        return companyInfoService.get(accordId, companyId);
     }
 }

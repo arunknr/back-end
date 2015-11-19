@@ -1,6 +1,7 @@
 package shareForcast.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import shareForcast.DAO.RatioValueDAO;
 import shareForcast.helper.QueryBuilder;
 import shareForcast.model.ShareKeyword;
@@ -9,16 +10,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Component
 public class QueryService {
 
     static HashMap<String, Integer> sharekeywordRatioIdMap = new HashMap<>();
+    private KeywordService keywordService;
     private RatioValueDAO ratioValueDAO;
 
     @Autowired
     public QueryService(KeywordService keywordService, RatioValueDAO ratioValueDAO) {
+        this.keywordService = keywordService;
         this.ratioValueDAO = ratioValueDAO;
-
-        createShareKeyWordRatioMap(keywordService);
     }
 
     private void createShareKeyWordRatioMap(KeywordService keywordService) {
@@ -29,6 +31,9 @@ public class QueryService {
     }
 
     public List<HashMap<String, String>> getValue(String query) {
+        if(sharekeywordRatioIdMap.isEmpty())
+            createShareKeyWordRatioMap(keywordService);
+
         QueryBuilder queryBuilder = new QueryBuilder();
         String generatedQuery = queryBuilder.createQuery(query, sharekeywordRatioIdMap);
         ArrayList<String> keys = queryBuilder.getKeys(query, sharekeywordRatioIdMap);

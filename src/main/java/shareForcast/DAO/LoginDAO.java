@@ -1,16 +1,17 @@
 package shareForcast.DAO;
 
 import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import shareForcast.model.User;
 
-@Component
+@Repository
 public class LoginDAO {
     private final SessionFactory factory;
 
-    public LoginDAO() {
-        factory = new Configuration().configure().buildSessionFactory();
+    @Autowired
+    public LoginDAO(SessionFactory sessionFactory) {
+        factory = sessionFactory;
     }
 
     public boolean exist(String username, String password) {

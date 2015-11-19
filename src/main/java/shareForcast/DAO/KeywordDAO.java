@@ -1,18 +1,21 @@
 package shareForcast.DAO;
 
 import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import shareForcast.model.ShareKeyword;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Repository
 public class KeywordDAO {
     private final SessionFactory factory;
 
-    public KeywordDAO() {
-        factory = new Configuration().configure().buildSessionFactory();
+    @Autowired
+    public KeywordDAO(SessionFactory sessionFactory) {
+        factory = sessionFactory;
     }
 
     public List<ShareKeyword> getAll() {

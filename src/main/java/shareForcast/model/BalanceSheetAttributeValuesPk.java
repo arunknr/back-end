@@ -33,8 +33,8 @@ public class BalanceSheetAttributeValuesPk implements Serializable {
         return companyId;
     }
 
-    public void setCompanyId(int shianId) {
-        this.companyId = shianId;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public int getTimeId() {

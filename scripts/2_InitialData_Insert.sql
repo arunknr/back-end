@@ -24,9 +24,9 @@ INSERT INTO PERIOD (id, name) VALUES (4, "Quarter");
 INSERT INTO PERIOD (id, name) VALUES (5, "YTD");
 
 INSERT INTO RATIOS (
-id, name, formula) VALUES (1, "Current Ratio","SELECT (a.balancesheet_value / b.balancesheet_value) as ratio FROM ( SELECT balancesheet_value FROM BALANCESHEETVALUES where shian_id='$ID' and report_period='$PER' and balancesheet_id=492) a, ( SELECT balancesheet_value FROM BALANCESHEETVALUES where shian_id='$ID' and report_period='$PER' and balancesheet_id=241) b;");
+id, name, formula) VALUES (1, "Current Ratio","SELECT (a.balancesheet_value / b.balancesheet_value) as ratio FROM ( SELECT balancesheet_value FROM BALANCESHEETVALUES where company_id='$ID' and report_period='$PER' and balancesheet_id=492) a, ( SELECT balancesheet_value FROM BALANCESHEETVALUES where company_id='$ID' and report_period='$PER' and balancesheet_id=241) b;");
 INSERT INTO RATIOS (
-id, name, formula) VALUES (2, "Quick Ratio","SELECT ((a.balancesheet_value - b.balancesheet_value) / c.balancesheet_value) as ratio FROM ( SELECT balancesheet_value FROM BALANCESHEETVALUES where shian_id='$ID' and report_period='$PER' and balancesheet_id=492) a, ( SELECT balancesheet_value FROM BALANCESHEETVALUES where shian_id='$ID' and report_period='$PER' and balancesheet_id=419) b, ( SELECT balancesheet_value FROM BALANCESHEETVALUES where shian_id='$ID' and report_period='$PER' and balancesheet_id=241) c;");
+id, name, formula) VALUES (2, "Quick Ratio","SELECT ((a.balancesheet_value - b.balancesheet_value) / c.balancesheet_value) as ratio FROM ( SELECT balancesheet_value FROM BALANCESHEETVALUES where company_id='$ID' and report_period='$PER' and balancesheet_id=492) a, ( SELECT balancesheet_value FROM BALANCESHEETVALUES where company_id='$ID' and report_period='$PER' and balancesheet_id=419) b, ( SELECT balancesheet_value FROM BALANCESHEETVALUES where company_id='$ID' and report_period='$PER' and balancesheet_id=241) c;");
 INSERT INTO RATIOS (
 id, name, formula) VALUES (3, "Stock Turnover Ratio","");
 INSERT INTO RATIOS (

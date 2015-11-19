@@ -1,8 +1,10 @@
 package shareForcast;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import shareForcast.util.HibernateUtil;
 
 @SpringBootApplication
@@ -13,21 +15,10 @@ public class Application {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
+    }
 
-        /*Department department = new Department("java");
-        session.save(department);
-
-        session.save(new Employee("Jakab Gipsz",department));
-        session.save(new Employee("Captain Nemo",department));
-
-        session.getTransaction().commit();*/
-//
-//        Query q = session.createQuery("From Employee ");
-//
-//        List<Employee> resultList = q.list();
-//        System.out.println("num of employess:" + resultList.size());
-//        for (Employee next : resultList) {
-//            System.out.println("next employee: " + next);
-//        }
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(){
+        return HibernateUtil.getSessionFactory();
     }
 }
