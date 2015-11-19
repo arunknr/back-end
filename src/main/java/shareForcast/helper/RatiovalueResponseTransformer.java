@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class RatiovalueResponseTransformer {
 
-    public List<HashMap<String, String>> processResponseForRatioValueQuery(List<String> keys, List listOfRatioValues) {
+    public static List<HashMap<String, String>> processResponseForRatioValueQuery(List<String> keys, List listOfRatioValues) {
         HashMap<String, String> map;
         List<HashMap<String, String>> hashMapList = new ArrayList<>();
         for (Object ratioValue : listOfRatioValues) {

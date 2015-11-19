@@ -34,9 +34,8 @@ public class QueryService {
         if(sharekeywordRatioIdMap.isEmpty())
             createShareKeyWordRatioMap(keywordService);
 
-        QueryBuilder queryBuilder = new QueryBuilder();
-        String generatedQuery = queryBuilder.createQuery(query, sharekeywordRatioIdMap);
-        ArrayList<String> keys = queryBuilder.getKeys(query, sharekeywordRatioIdMap);
+        String generatedQuery = QueryBuilder.createQuery(query, sharekeywordRatioIdMap);
+        ArrayList<String> keys = QueryBuilder.getKeys(query, sharekeywordRatioIdMap);
         return ratioValueDAO.get(generatedQuery, keys);
     }
 }

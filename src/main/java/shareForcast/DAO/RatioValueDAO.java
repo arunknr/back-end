@@ -14,11 +14,9 @@ import java.util.List;
 @Repository
 public class RatioValueDAO {
     private final SessionFactory factory;
-    private RatiovalueResponseTransformer ratiovalueResponseTransformer;
 
     @Autowired
-    public RatioValueDAO(SessionFactory sessionFactory, RatiovalueResponseTransformer ratiovalueResponseTransformer) {
-        this.ratiovalueResponseTransformer = ratiovalueResponseTransformer;
+    public RatioValueDAO(SessionFactory sessionFactory) {
         factory = sessionFactory;
     }
 
@@ -30,7 +28,7 @@ public class RatioValueDAO {
             List listOfRatioValues = session.createSQLQuery(generatedQuery).list();
             tx.commit();
 
-            return ratiovalueResponseTransformer.processResponseForRatioValueQuery(keys, listOfRatioValues);
+            return RatiovalueResponseTransformer.processResponseForRatioValueQuery(keys, listOfRatioValues);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();

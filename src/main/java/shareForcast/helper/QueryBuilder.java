@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class QueryBuilder {
 
-    public String createQuery(String query, HashMap<String, Integer> shareKeywords) {
+    public static String createQuery(String query, HashMap<String, Integer> shareKeywords) {
         query = query.toLowerCase().trim();
         String[] queryStrings = query.split(" ");
         StringBuilder selectqueryBuilder = new StringBuilder();
@@ -52,7 +52,7 @@ public class QueryBuilder {
         return selectqueryBuilder.append(" from").append(queryStringBuilder.toString()).append(whereQueryBuilder.toString()).toString();
     }
 
-    public ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
+    public static ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
         String[] queryStrings = query.split(" ");
 
         ArrayList<String> list = new ArrayList<>();
