@@ -18,7 +18,7 @@ public class ShareKeyword {
     String keyword;
 
     @Column(name = "ratio_id")
-    int ratioId;
+    Integer ratioId;
 
     public ShareKeyword() {
     }
@@ -51,6 +51,15 @@ public class ShareKeyword {
 
     public void setRatioId(int ratioId) {
         this.ratioId = ratioId;
+    }
+
+    @Override
+    public String toString() {
+        return "ShareKeyword{" +
+                "id=" + id +
+                ", keyword='" + keyword + '\'' +
+                ", ratioId=" + ratioId +
+                '}';
     }
 
     @Override
