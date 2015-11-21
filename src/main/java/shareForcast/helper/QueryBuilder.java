@@ -8,13 +8,13 @@ public class QueryBuilder {
     public static String createQuery(String query, HashMap<String, Integer> shareKeywords) {
         query = query.toLowerCase().trim();
         String[] queryStrings = query.split(" ");
-        StringBuilder selectqueryBuilder = new StringBuilder();
-        selectqueryBuilder.append("select t1.company_id, t1.time_id, t1.report_period");
+        StringBuilder selectQueryBuilder = new StringBuilder();
+        selectQueryBuilder.append("select t1.company_id, t1.time_id, t1.report_period");
 
         StringBuilder queryStringBuilder = new StringBuilder();
 
         StringBuilder whereQueryBuilder = new StringBuilder();
-        whereQueryBuilder.append(" where").append(" ");
+        whereQueryBuilder.append(" where");
 
         int ratioQueryCounter = 0;
 
@@ -27,7 +27,7 @@ public class QueryBuilder {
                 if(ratioQueryCounter > 1)
                     queryStringBuilder.append(" join");
 
-                selectqueryBuilder.append(", ratio").append(ratioQueryCounter);
+                selectQueryBuilder.append(", ratio").append(ratioQueryCounter);
 
                 queryStringBuilder
                         .append(" (select company_id, time_id, report_period, ratio_value as ratio").append(ratioQueryCounter)
@@ -49,7 +49,7 @@ public class QueryBuilder {
             }
         }
 
-        return selectqueryBuilder.append(" from").append(queryStringBuilder.toString()).append(whereQueryBuilder.toString()).toString();
+        return selectQueryBuilder.append(" from").append(queryStringBuilder.toString()).append(whereQueryBuilder.toString()).toString();
     }
 
     public static ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
