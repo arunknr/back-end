@@ -140,4 +140,37 @@ public class CompanyInfo {
                 ", marketCap='" + marketCap + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CompanyInfo that = (CompanyInfo) o;
+
+        if (companyId != that.companyId) return false;
+        if (accordId != that.accordId) return false;
+        if (bseId != that.bseId) return false;
+        if (bseListed != that.bseListed) return false;
+        if (nseListed != that.nseListed) return false;
+        if (nseId != null ? !nseId.equals(that.nseId) : that.nseId != null) return false;
+        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
+        if (groupName != null ? !groupName.equals(that.groupName) : that.groupName != null) return false;
+        return !(marketCap != null ? !marketCap.equals(that.marketCap) : that.marketCap != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = companyId;
+        result = 31 * result + accordId;
+        result = 31 * result + bseId;
+        result = 31 * result + (nseId != null ? nseId.hashCode() : 0);
+        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
+        result = 31 * result + (bseListed ? 1 : 0);
+        result = 31 * result + (nseListed ? 1 : 0);
+        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+        result = 31 * result + (marketCap != null ? marketCap.hashCode() : 0);
+        return result;
+    }
 }
