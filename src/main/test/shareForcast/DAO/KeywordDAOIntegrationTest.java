@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class KeywordDAOTest {
+public class KeywordDAOIntegrationTest {
 
     private static KeywordDAO keywordDAO;
 

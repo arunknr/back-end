@@ -9,7 +9,7 @@ import shareForcast.util.HibernateUtil;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class LoginDAOTest {
+public class LoginDAOIntegrationTest {
 
     private static LoginDAO loginDAO;
 
