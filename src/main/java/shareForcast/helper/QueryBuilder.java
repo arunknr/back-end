@@ -53,9 +53,13 @@ public class QueryBuilder {
     }
 
     public static ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
+        query = query.toLowerCase().trim();
         String[] queryStrings = query.split(" ");
 
         ArrayList<String> list = new ArrayList<>();
+        list.add("CompanyId");
+        list.add("TimeId");
+        list.add("ReportPeriod");
         for (String queryString : queryStrings) {
             if (shareKeywords.containsKey(queryString) && shareKeywords.get(queryString) != null) {
                 list.add(queryString);

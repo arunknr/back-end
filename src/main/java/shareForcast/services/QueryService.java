@@ -26,7 +26,7 @@ public class QueryService {
     private void createShareKeyWordRatioMap(KeywordService keywordService) {
         List<ShareKeyword> shareKeywords = keywordService.fetch();
         for (ShareKeyword shareKeyword : shareKeywords) {
-            sharekeywordRatioIdMap.put(shareKeyword.getKeyword(), shareKeyword.getRatioId());
+            sharekeywordRatioIdMap.put(shareKeyword.getKeyword().toLowerCase(), shareKeyword.getRatioId());
         }
     }
 
