@@ -1,5 +1,7 @@
 package shareForcast.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -45,11 +47,11 @@ public class ShareKeyword {
         this.keyword = keyword;
     }
 
-    public int getRatioId() {
+    public Integer getRatioId() {
         return ratioId;
     }
 
-    public void setRatioId(int ratioId) {
+    public void setRatioId(Integer ratioId) {
         this.ratioId = ratioId;
     }
 
