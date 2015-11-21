@@ -36,7 +36,7 @@ public class QueryServiceTest {
 
     @Test
     public void testIfDAOAreCalledWithRightParams() {
-        String expectedSqlQuery = "select t1.company_id, t1.time_id, t1.report_period, ratio1 from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 2) as t1 where  ratio1 > 10";
+        String expectedSqlQuery = "select t1.company_id, t1.time_id, t1.report_period, ratio1 from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 2) as t1 where ratio1 > 10";
         QueryService loginService = new QueryService(keywordServiceMock, ratioValueDAOMock);
         List expectedvalue = new ArrayList();
         when(ratioValueDAOMock.get(anyString(), anyList())).thenReturn(expectedvalue);

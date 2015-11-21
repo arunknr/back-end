@@ -21,11 +21,6 @@ public class KeywordDAOIntegrationTest {
         keywordDAO = new KeywordDAO(HibernateUtil.getSessionFactory());
     }
 
-    @AfterClass
-    public static void tearDown(){
-        HibernateUtil.shutdown();
-    }
-
     @Test
     public void testIfAbleToInsertAndFetchAllKeywords() {
         ShareKeyword shareKeyword1 = new ShareKeyword(8000, "test1", 1);

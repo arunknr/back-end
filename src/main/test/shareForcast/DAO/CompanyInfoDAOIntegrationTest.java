@@ -17,11 +17,6 @@ public class CompanyInfoDAOIntegrationTest {
         companyInfoTestData = new CompanyInfo(1, 123, 345, "test id", "test company", true, true, "test group", "test market");
     }
 
-    @AfterClass
-    public static void tearDown(){
-        HibernateUtil.shutdown();
-    }
-
     @Test
     public void testIfAbleToInsertAndFetchCompanyInfo() {
         companyInfoDAO.insert(companyInfoTestData);

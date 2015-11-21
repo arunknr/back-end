@@ -18,11 +18,6 @@ public class LoginDAOIntegrationTest {
         loginDAO = new LoginDAO(HibernateUtil.getSessionFactory());
     }
 
-    @AfterClass
-    public static void tearDown(){
-        HibernateUtil.shutdown();
-    }
-
     @Test
     public void testIfAbleToInsertAndCheckIfUserAndPasswordExistInDB() {
         String userName = "testuser";

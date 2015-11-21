@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import shareForcast.helper.RatiovalueResponseTransformer;
+import shareForcast.model.RatioAttributeValues;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,5 +37,35 @@ public class RatioValueDAO {
             session.close();
         }
         return null;
+    }
+
+    public void insert(RatioAttributeValues ratioAttributeValues) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(ratioAttributeValues);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void delete(RatioAttributeValues ratioAttributeValues) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(ratioAttributeValues);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 }
