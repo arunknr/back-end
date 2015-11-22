@@ -27,10 +27,10 @@ public class CompanyDetailsControllerTest {
     public void testIsServiceIsCalledWithRightParams() {
         CompanyDetailsController companyDetailsController = new CompanyDetailsController(companyInfoServiceMock);
         CompanyInfo companyInfo = new CompanyInfo();
-        when(companyInfoServiceMock.get(anyInt(), anyInt())).thenReturn(companyInfo);
+        when(companyInfoServiceMock.get(anyInt())).thenReturn(companyInfo);
 
-        assertEquals(companyInfo, companyDetailsController.getCompanyDetails(123, 345));
-        verify(companyInfoServiceMock, times(1)).get(123, 345);
+        assertEquals(companyInfo, companyDetailsController.getCompanyDetails(123));
+        verify(companyInfoServiceMock, times(1)).get(123);
     }
 
 }

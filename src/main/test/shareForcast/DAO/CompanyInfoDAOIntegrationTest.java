@@ -21,7 +21,7 @@ public class CompanyInfoDAOIntegrationTest {
     public void testIfAbleToInsertAndFetchCompanyInfo() {
         companyInfoDAO.insert(companyInfoTestData);
 
-        CompanyInfo companyInfo = companyInfoDAO.get(123, 1);
+        CompanyInfo companyInfo = companyInfoDAO.get(1);
 
         assertEquals(companyInfoTestData, companyInfo);
 
@@ -34,7 +34,7 @@ public class CompanyInfoDAOIntegrationTest {
 
         companyInfoDAO.delete(companyInfoTestData);
 
-        CompanyInfo companyInfo = companyInfoDAO.get(123, 1);
+        CompanyInfo companyInfo = companyInfoDAO.get(1);
 
         assertEquals(null, companyInfo);
     }

@@ -14,7 +14,7 @@ public class CompanyInfoService {
         this.companyInfoDAO = companyInfoDAO;
     }
 
-    public CompanyInfo get(int accordId, int companyId) {
-        return companyInfoDAO.get(accordId, companyId);
+    public CompanyInfo get(int companyId) {
+        return companyInfoDAO.get(companyId);
     }
 }

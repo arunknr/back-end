@@ -14,15 +14,14 @@ public class CompanyInfoDAO {
         factory = sessionFactory;
     }
 
-    public CompanyInfo get(int accordId, int companyId) {
+    public CompanyInfo get(int companyId) {
         Session session = factory.openSession();
         Transaction tx = null;
         CompanyInfo companyInfo = null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM CompanyInfo where company_id=:companyId and accord_id=:accordId")
-                    .setInteger("companyId", companyId)
-                    .setInteger("accordId", accordId);
+            Query query = session.createQuery("FROM CompanyInfo where company_id=:companyId")
+                    .setInteger("companyId", companyId);
             companyInfo = (CompanyInfo) query.uniqueResult();
             tx.commit();
         } catch (HibernateException e) {

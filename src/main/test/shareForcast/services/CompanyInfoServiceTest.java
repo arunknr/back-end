@@ -24,10 +24,10 @@ public class CompanyInfoServiceTest {
     public void testIfDAOAreCalledWithRightParams() {
         CompanyInfoService companyInfoService = new CompanyInfoService(companyInfoDAOMock);
         CompanyInfo expectedValue = new CompanyInfo();
-        when(companyInfoDAOMock.get(123, 123)).thenReturn(expectedValue);
+        when(companyInfoDAOMock.get(123)).thenReturn(expectedValue);
 
-        assertEquals(expectedValue, companyInfoService.get(123, 123));
-        verify(companyInfoDAOMock, times(1)).get(123, 123);
+        assertEquals(expectedValue, companyInfoService.get(123));
+        verify(companyInfoDAOMock, times(1)).get(123);
     }
 
 }
