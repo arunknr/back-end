@@ -1,11 +1,11 @@
 INSERT INTO USERINFORMATION (username, password) VALUES ("arun", "arun");
 
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("Current Ratio", 1);
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("Quick Ratio", 2);
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("Stock Turnover Ratio", 3);
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("Net Profit Margin", 4);
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("EBIT Margins", 5);
-INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("PE Ratio", 6);
+INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("CurrentRatio", 1);
+INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("QuickRatio", 2);
+INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("StockTurnoverRatio", 3);
+INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("NetProfitMargin", 4);
+INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("EBITMargins", 5);
+INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("PERatio", 6);
 INSERT INTO SHAREKEYWORDS (key_words) VALUES (">");
 INSERT INTO SHAREKEYWORDS (key_words) VALUES ("<");
 INSERT INTO SHAREKEYWORDS (key_words) VALUES ("=");
