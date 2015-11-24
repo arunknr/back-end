@@ -8,13 +8,22 @@ public class QueryBuilder {
     public static String createQuery(String query, HashMap<String, Integer> shareKeywords) {
         query = query.toLowerCase().trim();
         String[] queryStrings = query.split(" ");
-        StringBuilder selectQueryBuilder = new StringBuilder();
-        selectQueryBuilder.append("select t1.company_id, t1.time_id, t1.report_period");
 
-        StringBuilder queryStringBuilder = new StringBuilder();
+        StringBuilder mainQueryBuilder = new StringBuilder();
+        mainQueryBuilder.append("select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1");
+        mainQueryBuilder.append(" join (select id, name  from RATIOS) as r2");
+        mainQueryBuilder.append(" on r1.ratio_id = r2.id");
+        mainQueryBuilder.append(" join (select company_name, company_id  from COMPANYINFORMATION) as r3");
+        mainQueryBuilder.append(" on r1.company_id = r3.company_id");
+        mainQueryBuilder.append(" where r1.company_id in (");
 
-        StringBuilder whereQueryBuilder = new StringBuilder();
-        whereQueryBuilder.append(" where");
+        StringBuilder selectSubQueryBuilder = new StringBuilder();
+        selectSubQueryBuilder.append("select t1.company_id");
+
+        StringBuilder subQueryStringBuilder = new StringBuilder();
+
+        StringBuilder whereSubQueryBuilder = new StringBuilder();
+        whereSubQueryBuilder.append(" where");
 
         int ratioQueryCounter = 0;
 
@@ -25,31 +34,31 @@ public class QueryBuilder {
                 ratioQueryCounter++;
 
                 if(ratioQueryCounter > 1)
-                    queryStringBuilder.append(" join");
+                    subQueryStringBuilder.append(" join");
 
-                selectQueryBuilder.append(", ratio").append(ratioQueryCounter);
+                //selectSubQueryBuilder.append(", ratio").append(ratioQueryCounter);
 
-                queryStringBuilder
+                subQueryStringBuilder
                         .append(" (select company_id, time_id, report_period, ratio_value as ratio").append(ratioQueryCounter)
                         .append(" from RATIOVALUES where ratio_id = ").append(ratioId).append(") as t").append(ratioQueryCounter);
 
                 if(ratioQueryCounter > 1){
-                    queryStringBuilder
+                    subQueryStringBuilder
                             .append(" on t1.company_id = t").append(ratioQueryCounter).append(".company_id")
                             .append(" and t1.time_id = t").append(ratioQueryCounter).append(".time_id")
                             .append(" and t1.report_period = t").append(ratioQueryCounter).append(".report_period");
                 }
 
-                whereQueryBuilder
+                whereSubQueryBuilder
                         .append(" ratio").append(ratioQueryCounter);
 
             }else {
-                whereQueryBuilder
+                whereSubQueryBuilder
                         .append(" ").append(queryString);
             }
         }
 
-        return selectQueryBuilder.append(" from").append(queryStringBuilder.toString()).append(whereQueryBuilder.toString()).toString();
+        return mainQueryBuilder.append(selectSubQueryBuilder.toString()).append(" from").append(subQueryStringBuilder.toString()).append(whereSubQueryBuilder.toString()).append(")").toString();
     }
 
     public static ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
@@ -58,13 +67,14 @@ public class QueryBuilder {
 
         ArrayList<String> list = new ArrayList<>();
         list.add("CompanyId");
-        list.add("TimeId");
-        list.add("ReportPeriod");
-        for (String queryString : queryStrings) {
+        list.add("CompanyName");
+        list.add("RatioId");
+        list.add("RatioValue");
+        /*for (String queryString : queryStrings) {
             if (shareKeywords.containsKey(queryString) && shareKeywords.get(queryString) != null) {
                 list.add(queryString);
             }
-        }
+        }*/
         return list;
     }
 }

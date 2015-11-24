@@ -29,13 +29,19 @@ public class QueryBuilderTest {
     @Test
     public void testQueryCreatedProperlyForMultipleConditions(){
 
-        String expectedQuery ="select t1.company_id, t1.time_id, t1.report_period, ratio1, ratio2, ratio3 " +
+        String expectedQuery ="select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1 " +
+                "join (select id, name  from RATIOS) as r2 " +
+                "on r1.ratio_id = r2.id " +
+                "join (select company_name, company_id  from COMPANYINFORMATION) as r3 " +
+                "on r1.company_id = r3.company_id " +
+                "where r1.company_id in (" +
+                "select t1.company_id " +
                 "from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 1) as t1 " +
                 "join (select company_id, time_id, report_period, ratio_value as ratio2 from RATIOVALUES where ratio_id = 2) as t2 " +
                 "on t1.company_id = t2.company_id and t1.time_id = t2.time_id and t1.report_period = t2.report_period " +
                 "join (select company_id, time_id, report_period, ratio_value as ratio3 from RATIOVALUES where ratio_id = 3) as t3 " +
                 "on t1.company_id = t3.company_id and t1.time_id = t3.time_id and t1.report_period = t3.report_period " +
-                "where ( ratio1 > 20 and ratio2 > 10 ) or ( ratio3 < 100 )";
+                "where ( ratio1 > 20 and ratio2 > 10 ) or ( ratio3 < 100 ))";
 
         String query = "( a > 20 and b > 10 ) or ( c < 100 )";
         String actualQuery = QueryBuilder.createQuery(query, hashMap);
@@ -46,9 +52,15 @@ public class QueryBuilderTest {
 
     @Test
     public void testForOneRatio(){
-        String expectedQuery = "select t1.company_id, t1.time_id, t1.report_period, ratio1 " +
+        String expectedQuery = "select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1 " +
+                "join (select id, name  from RATIOS) as r2 " +
+                "on r1.ratio_id = r2.id " +
+                "join (select company_name, company_id  from COMPANYINFORMATION) as r3 " +
+                "on r1.company_id = r3.company_id " +
+                "where r1.company_id in (" +
+                "select t1.company_id " +
                 "from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 1) as t1 " +
-                "where ratio1 > 20";
+                "where ratio1 > 20)";
 
         String query = "a > 20";
         String actualQuery = QueryBuilder.createQuery(query, hashMap);
@@ -58,11 +70,17 @@ public class QueryBuilderTest {
 
     @Test
     public void testForTwoRatio(){
-        String expectedQuery ="select t1.company_id, t1.time_id, t1.report_period, ratio1, ratio2 " +
+        String expectedQuery ="select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1 " +
+                "join (select id, name  from RATIOS) as r2 " +
+                "on r1.ratio_id = r2.id " +
+                "join (select company_name, company_id  from COMPANYINFORMATION) as r3 " +
+                "on r1.company_id = r3.company_id " +
+                "where r1.company_id in (" +
+                "select t1.company_id " +
                 "from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 1) as t1 " +
                 "join (select company_id, time_id, report_period, ratio_value as ratio2 from RATIOVALUES where ratio_id = 2) as t2 " +
                 "on t1.company_id = t2.company_id and t1.time_id = t2.time_id and t1.report_period = t2.report_period " +
-                "where ratio1 > 20 or ratio2 = 8";
+                "where ratio1 > 20 or ratio2 = 8)";
 
         String query = "a > 20 or b = 8";
         String actualQuery = QueryBuilder.createQuery(query, hashMap);
@@ -72,11 +90,17 @@ public class QueryBuilderTest {
 
     @Test
     public void testForTwoRatioExtended(){
-        String expectedQuery ="select t1.company_id, t1.time_id, t1.report_period, ratio1, ratio2 " +
+        String expectedQuery ="select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1 " +
+                "join (select id, name  from RATIOS) as r2 " +
+                "on r1.ratio_id = r2.id " +
+                "join (select company_name, company_id  from COMPANYINFORMATION) as r3 " +
+                "on r1.company_id = r3.company_id " +
+                "where r1.company_id in (" +
+                "select t1.company_id " +
                 "from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 1) as t1 " +
                 "join (select company_id, time_id, report_period, ratio_value as ratio2 from RATIOVALUES where ratio_id = 2) as t2 " +
                 "on t1.company_id = t2.company_id and t1.time_id = t2.time_id and t1.report_period = t2.report_period " +
-                "where ratio1 > 20 and ratio2 >= 8";
+                "where ratio1 > 20 and ratio2 >= 8)";
 
         String query = "a > 20 and b >= 8";
         String actualQuery = QueryBuilder.createQuery(query, hashMap);
@@ -86,7 +110,13 @@ public class QueryBuilderTest {
 
     @Test
     public void testForMultipleRatios(){
-        String expectedQuery ="select t1.company_id, t1.time_id, t1.report_period, ratio1, ratio2, ratio3, ratio4, ratio5 " +
+        String expectedQuery ="select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1 " +
+                "join (select id, name  from RATIOS) as r2 " +
+                "on r1.ratio_id = r2.id " +
+                "join (select company_name, company_id  from COMPANYINFORMATION) as r3 " +
+                "on r1.company_id = r3.company_id " +
+                "where r1.company_id in (" +
+                "select t1.company_id " +
                 "from (select company_id, time_id, report_period, ratio_value as ratio1 from RATIOVALUES where ratio_id = 1) as t1 " +
                 "join (select company_id, time_id, report_period, ratio_value as ratio2 from RATIOVALUES where ratio_id = 2) as t2 " +
                 "on t1.company_id = t2.company_id and t1.time_id = t2.time_id and t1.report_period = t2.report_period " +
@@ -96,7 +126,7 @@ public class QueryBuilderTest {
                 "on t1.company_id = t4.company_id and t1.time_id = t4.time_id and t1.report_period = t4.report_period " +
                 "join (select company_id, time_id, report_period, ratio_value as ratio5 from RATIOVALUES where ratio_id = 5) as t5 " +
                 "on t1.company_id = t5.company_id and t1.time_id = t5.time_id and t1.report_period = t5.report_period " +
-                "where ( ratio1 > 20 and ratio2 >= 8 ) or ( ratio3 = 10 ) and ( ratio4 <= 1 ) or ratio5 = 5";
+                "where ( ratio1 > 20 and ratio2 >= 8 ) or ( ratio3 = 10 ) and ( ratio4 <= 1 ) or ratio5 = 5)";
 
         String query = "( a > 20 and b >= 8 ) or ( c = 10 ) and ( d <= 1 ) or e = 5";
         String actualQuery = QueryBuilder.createQuery(query, hashMap);
