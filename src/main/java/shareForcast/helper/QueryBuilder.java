@@ -8,6 +8,8 @@ public class QueryBuilder {
     public static String createQuery(String query, HashMap<String, Integer> shareKeywords) {
         query = query.toLowerCase().trim();
         String[] queryStrings = query.split(" ");
+        String time_id = "5";
+        String report_period = "201503";
 
         StringBuilder mainQueryBuilder = new StringBuilder();
         mainQueryBuilder.append("select r1.company_id, r3.company_name, r2.name, r1.ratio_value from RATIOVALUES as r1");
@@ -18,12 +20,17 @@ public class QueryBuilder {
         mainQueryBuilder.append(" where r1.company_id in (");
 
         StringBuilder selectSubQueryBuilder = new StringBuilder();
-        selectSubQueryBuilder.append("select t1.company_id");
+        selectSubQueryBuilder.append("select distinct t1.company_id");
 
         StringBuilder subQueryStringBuilder = new StringBuilder();
 
         StringBuilder whereSubQueryBuilder = new StringBuilder();
         whereSubQueryBuilder.append(" where");
+
+        StringBuilder whereMainQueryBuilder = new StringBuilder();
+        whereMainQueryBuilder
+                .append(" and time_id = ").append(time_id)
+                .append(" and report_period = ").append(report_period);
 
         int ratioQueryCounter = 0;
 
@@ -39,14 +46,15 @@ public class QueryBuilder {
                 //selectSubQueryBuilder.append(", ratio").append(ratioQueryCounter);
 
                 subQueryStringBuilder
-                        .append(" (select company_id, time_id, report_period, ratio_value as ratio").append(ratioQueryCounter)
-                        .append(" from RATIOVALUES where ratio_id = ").append(ratioId).append(") as t").append(ratioQueryCounter);
+                        .append(" (select company_id, ratio_value as ratio").append(ratioQueryCounter)
+                        .append(" from RATIOVALUES where ratio_id = ").append(ratioId)
+                        .append(" and time_id = ").append(time_id)
+                        .append(" and report_period = ").append(report_period)
+                        .append(") as t").append(ratioQueryCounter);
 
                 if(ratioQueryCounter > 1){
                     subQueryStringBuilder
-                            .append(" on t1.company_id = t").append(ratioQueryCounter).append(".company_id")
-                            .append(" and t1.time_id = t").append(ratioQueryCounter).append(".time_id")
-                            .append(" and t1.report_period = t").append(ratioQueryCounter).append(".report_period");
+                            .append(" on t1.company_id = t").append(ratioQueryCounter).append(".company_id");
                 }
 
                 whereSubQueryBuilder
@@ -58,7 +66,13 @@ public class QueryBuilder {
             }
         }
 
-        return mainQueryBuilder.append(selectSubQueryBuilder.toString()).append(" from").append(subQueryStringBuilder.toString()).append(whereSubQueryBuilder.toString()).append(")").toString();
+        return mainQueryBuilder
+                .append(selectSubQueryBuilder.toString())
+                .append(" from")
+                .append(subQueryStringBuilder.toString())
+                .append(whereSubQueryBuilder.toString())
+                .append(")")
+                .append(whereMainQueryBuilder.toString()).toString();
     }
 
     public static ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
