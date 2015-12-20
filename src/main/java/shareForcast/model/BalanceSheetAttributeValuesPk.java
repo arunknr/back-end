@@ -1,7 +1,6 @@
 package shareForcast.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
@@ -16,17 +15,18 @@ public class BalanceSheetAttributeValuesPk implements Serializable {
     @Column(name="report_period")
     int reportPeriod;
 
-    @Column(name="balancesheet_id")
-    int balanceSheetAttrId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "balancesheet_id")
+    BalanceSheetAttributes balancesheet_id;
 
     public BalanceSheetAttributeValuesPk() {
     }
 
-    public BalanceSheetAttributeValuesPk(int companyId, int timeId, int reportPeriod, int balanceSheetAttrId) {
+    public BalanceSheetAttributeValuesPk(int companyId, int timeId, int reportPeriod, BalanceSheetAttributes balancesheet_id) {
         this.companyId = companyId;
         this.timeId = timeId;
         this.reportPeriod = reportPeriod;
-        this.balanceSheetAttrId = balanceSheetAttrId;
+        this.balancesheet_id = balancesheet_id;
     }
 
     public int getCompanyId() {
@@ -53,11 +53,12 @@ public class BalanceSheetAttributeValuesPk implements Serializable {
         this.reportPeriod = reportPeriod;
     }
 
-    public int getBalanceSheetAttrId() {
-        return balanceSheetAttrId;
+
+    public BalanceSheetAttributes getBalancesheet_id() {
+        return this.balancesheet_id;
     }
 
-    public void setBalanceSheetAttrId(int balanceSheetAttrId) {
-        this.balanceSheetAttrId = balanceSheetAttrId;
+    public void setBalancesheet_id(BalanceSheetAttributes balancesheet_id) {
+        this.balancesheet_id = balancesheet_id;
     }
 }

@@ -3,42 +3,52 @@ package shareForcast.DAO;
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import shareForcast.model.CompanyInfo;
+import shareForcast.model.BalanceSheetAttributeValues;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Repository
-public class CompanyInfoDAO {
+public class BalanceSheetValuesDAO {
     private final SessionFactory factory;
 
     @Autowired
-    public CompanyInfoDAO(SessionFactory sessionFactory) {
+    public BalanceSheetValuesDAO(SessionFactory sessionFactory) {
         factory = sessionFactory;
     }
 
-    public CompanyInfo get(int companyId) {
+    public List<BalanceSheetAttributeValues> getAll(int companyId) {
+        List<BalanceSheetAttributeValues> balanceSheetValues = new ArrayList<>();
+
         Session session = factory.openSession();
         Transaction tx = null;
-        CompanyInfo companyInfo = null;
+
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM CompanyInfo where company_id=:companyId")
+            Query query = session.createQuery("FROM BalanceSheetAttributeValues where company_id=:companyId")
                     .setInteger("companyId", companyId);
-            companyInfo = (CompanyInfo) query.uniqueResult();
-                tx.commit();
+            List list = query.list();
+            Iterator iterator = list.iterator();
+            while(iterator.hasNext()){
+                balanceSheetValues.add((BalanceSheetAttributeValues) iterator.next());
+            }
+            tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return companyInfo;
+        return balanceSheetValues;
     }
 
-    public void insert(CompanyInfo companyInfo) {
+    public void insert(BalanceSheetAttributeValues balanceSheetValues) {
         Session session = factory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.save(companyInfo);
+            session.save(balanceSheetValues);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -48,12 +58,12 @@ public class CompanyInfoDAO {
         }
     }
 
-    public void delete(CompanyInfo companyInfo) {
+    public void delete(BalanceSheetAttributeValues balanceSheetValues) {
         Session session = factory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(companyInfo);
+            session.delete(balanceSheetValues);
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
