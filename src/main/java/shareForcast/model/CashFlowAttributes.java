@@ -4,8 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "BALANCESHEET")
-public class BalanceSheetAttributes {
+@Table(name = "CASHFLOW")
+public class CashFlowAttributes {
 
     @Id
     @NotNull
@@ -25,10 +25,10 @@ public class BalanceSheetAttributes {
     @Column(name = "name")
     String name;
 
-    public BalanceSheetAttributes() {
+    public CashFlowAttributes() {
     }
 
-    public BalanceSheetAttributes(int id, int levelIndicator, boolean valueRequired, boolean boldRequired, String name) {
+    public CashFlowAttributes(int id, int levelIndicator, boolean valueRequired, boolean boldRequired, String name) {
         this.id = id;
         this.levelIndicator = levelIndicator;
         this.valueRequired = valueRequired;

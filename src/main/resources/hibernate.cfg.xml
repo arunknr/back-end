@@ -24,6 +24,10 @@
         <mapping class="shareForcast.model.ShareKeyword" />
         <mapping class="shareForcast.model.BalanceSheetAttributes" />
         <mapping class="shareForcast.model.BalanceSheetAttributeValues" />
+        <mapping class="shareForcast.model.ProfitLossAttributes" />
+        <mapping class="shareForcast.model.ProfitLossAttributeValues" />
+        <mapping class="shareForcast.model.CashFlowAttributes" />
+        <mapping class="shareForcast.model.CashFlowAttributeValues" />
         <mapping class="shareForcast.model.CompanyInfo" />
         <mapping class="shareForcast.model.Period" />
         <mapping class="shareForcast.model.Ratios" />

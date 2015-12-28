@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
-public class BalanceSheetAttributeValuesPk implements Serializable {
+public class CashFlowAttributeValuesPk implements Serializable {
 
     @Column(name="company_id")
     int companyId;
@@ -17,12 +17,12 @@ public class BalanceSheetAttributeValuesPk implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
-    BalanceSheetAttributes id;
+    CashFlowAttributes id;
 
-    public BalanceSheetAttributeValuesPk() {
+    public CashFlowAttributeValuesPk() {
     }
 
-    public BalanceSheetAttributeValuesPk(int companyId, int timeId, int reportPeriod, BalanceSheetAttributes id) {
+    public CashFlowAttributeValuesPk(int companyId, int timeId, int reportPeriod, CashFlowAttributes id) {
         this.companyId = companyId;
         this.timeId = timeId;
         this.reportPeriod = reportPeriod;
@@ -54,11 +54,11 @@ public class BalanceSheetAttributeValuesPk implements Serializable {
     }
 
 
-    public BalanceSheetAttributes getId() {
+    public CashFlowAttributes getId() {
         return this.id;
     }
 
-    public void setId(BalanceSheetAttributes id) {
+    public void setId(CashFlowAttributes id) {
         this.id = id;
     }
 }

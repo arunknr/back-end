@@ -11,12 +11,12 @@ import shareForcast.services.BalanceSheetService;
 import java.util.List;
 
 @RestController
-public class CompanyFinancialsController {
+public class BalanceSheetController {
 
     private BalanceSheetService balanceSheetService;
 
     @Autowired
-    public CompanyFinancialsController(BalanceSheetService balanceSheetService) {
+    public BalanceSheetController(BalanceSheetService balanceSheetService) {
         this.balanceSheetService = balanceSheetService;
     }
 
