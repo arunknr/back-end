@@ -26,7 +26,7 @@ public class BalanceSheetValuesDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM BalanceSheetAttributeValues where company_id=:companyId")
+            Query query = session.createQuery("FROM BalanceSheetAttributeValues where company_id=:companyId and report_period=201503")
                     .setInteger("companyId", companyId);
             List list = query.list();
             Iterator iterator = list.iterator();

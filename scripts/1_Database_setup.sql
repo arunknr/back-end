@@ -27,7 +27,7 @@ nse_id varchar(25),
 company_name varchar(255) NOT NULL,
 bse_listed TINYINT(1) NOT NULL,
 nse_listed TINYINT(1) NOT NULL,
-group_name varchar(255),
+industry varchar(255),
 market_cap varchar(255),
 PRIMARY KEY (company_id)
 );

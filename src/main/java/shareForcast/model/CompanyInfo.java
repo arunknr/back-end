@@ -33,8 +33,8 @@ public class CompanyInfo {
     @Column(name = "nse_listed", columnDefinition = "BIT")
     boolean nseListed;
 
-    @Column(name = "group_name")
-    String groupName;
+    @Column(name = "industry")
+    String industry;
 
     @Column(name = "market_cap")
     String marketCap;
@@ -42,7 +42,7 @@ public class CompanyInfo {
     public CompanyInfo() {
     }
 
-    public CompanyInfo(int companyId, int accordId, int bseId, String nseId, String companyName, boolean bseListed, boolean nseListed, String groupName, String marketCap) {
+    public CompanyInfo(int companyId, int accordId, int bseId, String nseId, String companyName, boolean bseListed, boolean nseListed, String industry, String marketCap) {
         this.companyId = companyId;
         this.accordId = accordId;
         this.bseId = bseId;
@@ -50,7 +50,7 @@ public class CompanyInfo {
         this.companyName = companyName;
         this.bseListed = bseListed;
         this.nseListed = nseListed;
-        this.groupName = groupName;
+        this.industry = industry;
         this.marketCap = marketCap;
     }
 
@@ -110,12 +110,12 @@ public class CompanyInfo {
         this.nseListed = nseListed;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getIndustry() {
+        return industry;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 
     public String getMarketCap() {
@@ -136,7 +136,7 @@ public class CompanyInfo {
                 ", companyName='" + companyName + '\'' +
                 ", bseListed=" + bseListed +
                 ", nseListed=" + nseListed +
-                ", groupName='" + groupName + '\'' +
+                ", industry='" + industry + '\'' +
                 ", marketCap='" + marketCap + '\'' +
                 '}';
     }
@@ -155,7 +155,7 @@ public class CompanyInfo {
         if (nseListed != that.nseListed) return false;
         if (nseId != null ? !nseId.equals(that.nseId) : that.nseId != null) return false;
         if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-        if (groupName != null ? !groupName.equals(that.groupName) : that.groupName != null) return false;
+        if (industry != null ? !industry.equals(that.industry) : that.industry != null) return false;
         return !(marketCap != null ? !marketCap.equals(that.marketCap) : that.marketCap != null);
 
     }
@@ -169,7 +169,7 @@ public class CompanyInfo {
         result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         result = 31 * result + (bseListed ? 1 : 0);
         result = 31 * result + (nseListed ? 1 : 0);
-        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+        result = 31 * result + (industry != null ? industry.hashCode() : 0);
         result = 31 * result + (marketCap != null ? marketCap.hashCode() : 0);
         return result;
     }

@@ -26,7 +26,7 @@ public class CashFlowValuesDAO {
 
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("FROM CashFlowAttributeValues where company_id=:companyId")
+            Query query = session.createQuery("FROM CashFlowAttributeValues where company_id=:companyId and report_period=201503")
                     .setInteger("companyId", companyId);
             List list = query.list();
             Iterator iterator = list.iterator();
