@@ -76,14 +76,24 @@ public class QueryBuilder {
     }
 
     public static ArrayList<String> getKeys(String query, HashMap<String, Integer> shareKeywords) {
-        query = query.toLowerCase().trim();
-        String[] queryStrings = query.split(" ");
+        //query = query.toLowerCase().trim();
+        //String[] queryStrings = query.split(" ");
 
         ArrayList<String> list = new ArrayList<>();
         list.add("CompanyId");
         list.add("CompanyName");
-        list.add("RatioId");
-        list.add("RatioValue");
+        list.add("RatioId1");
+        list.add("RatioValue1");
+        list.add("RatioId2");
+        list.add("RatioValue2");
+        list.add("RatioId3");
+        list.add("RatioValue3");
+        list.add("RatioId4");
+        list.add("RatioValue4");
+        list.add("RatioId5");
+        list.add("RatioValue5");
+        list.add("RatioId6");
+        list.add("RatioValue6");
         /*for (String queryString : queryStrings) {
             if (shareKeywords.containsKey(queryString) && shareKeywords.get(queryString) != null) {
                 list.add(queryString);
