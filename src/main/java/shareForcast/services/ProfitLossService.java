@@ -3,8 +3,8 @@ package shareForcast.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shareForcast.DAO.ProfitLossValuesDAO;
-import shareForcast.model.ProfitLossAttributeValues;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -16,7 +16,7 @@ public class ProfitLossService {
         this.profitLossValuesDAO = profitLossValuesDAO;
     }
 
-    public List<ProfitLossAttributeValues> getAll(int companyId) {
-        return profitLossValuesDAO.getAll(companyId);
+    public List<HashMap<String, Object>> getAll(int companyId, int reportPeriod) {
+        return profitLossValuesDAO.getAll(companyId, reportPeriod);
     }
 }

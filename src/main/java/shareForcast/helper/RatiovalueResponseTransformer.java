@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Component
-public class RatiovalueResponseTransformer {
+public class RatioValueResponseTransformer {
 
     public static List<HashMap<String, String>> processResponseForRatioValueQuery(List<String> keys, List listOfRatioValues) {
         HashMap<String, String> map = new HashMap<>();

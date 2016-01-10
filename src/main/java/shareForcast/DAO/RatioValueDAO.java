@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import shareForcast.helper.RatiovalueResponseTransformer;
+import shareForcast.helper.RatioValueResponseTransformer;
 import shareForcast.model.RatioAttributeValues;
 
 import java.util.HashMap;
@@ -24,19 +24,19 @@ public class RatioValueDAO {
     public List<HashMap<String, String>> get(String generatedQuery, List<String> keys) {
         Session session = factory.openSession();
         Transaction tx = null;
+        List<HashMap<String, String>> returnValue = null;
         try {
             tx = session.beginTransaction();
             List listOfRatioValues = session.createSQLQuery(generatedQuery).list();
             tx.commit();
-
-            return RatiovalueResponseTransformer.processResponseForRatioValueQuery(keys, listOfRatioValues);
+            returnValue = RatioValueResponseTransformer.processResponseForRatioValueQuery(keys, listOfRatioValues);
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return null;
+        return returnValue;
     }
 
     public void insert(RatioAttributeValues ratioAttributeValues) {

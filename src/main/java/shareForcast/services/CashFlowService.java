@@ -3,8 +3,8 @@ package shareForcast.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import shareForcast.DAO.CashFlowValuesDAO;
-import shareForcast.model.CashFlowAttributeValues;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -16,7 +16,7 @@ public class CashFlowService {
         this.cashFlowValuesDAO = cashFlowValuesDAO;
     }
 
-    public List<CashFlowAttributeValues> getAll(int companyId) {
-        return cashFlowValuesDAO.getAll(companyId);
+    public List<HashMap<String, Object>> getAll(int companyId, int reportPeriod) {
+        return cashFlowValuesDAO.getAll(companyId, reportPeriod);
     }
 }

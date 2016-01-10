@@ -1,4 +1,4 @@
-INSERT INTO USERINFORMATION (username, password) VALUES ("arun", "arun");
+INSERT INTO USERINFORMATION (username, password, firstname, lastname, email) VALUES ("arun", "arun", "Arun", "J", "arun.j@gmail.com");
 
 INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("CurrentRatio", 1);
 INSERT INTO SHAREKEYWORDS (key_words, ratio_id) VALUES ("QuickRatio", 2);
