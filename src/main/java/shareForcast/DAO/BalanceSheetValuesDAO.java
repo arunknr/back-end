@@ -22,12 +22,10 @@ public class BalanceSheetValuesDAO {
     public List<HashMap<String, Object>> getAll(int companyId, int reportPeriod) {
         List<BalanceSheetAttributeValues> balanceSheetValues = new ArrayList<>();
 
-        Session session = factory.openSession();
-        Transaction tx = null;
+        Session session = factory.getCurrentSession();
         List<HashMap<String, Object>> returnValue = null;
 
         try {
-            tx = session.beginTransaction();
             Query query = session.createQuery("FROM BalanceSheetAttributeValues where company_id=:companyId and report_period>:reportPeriod1 and report_period<:reportPeriod2 order by id, report_period");
             query.setInteger("companyId", companyId);
             query.setInteger("reportPeriod1", reportPeriod - 500);
@@ -37,44 +35,29 @@ public class BalanceSheetValuesDAO {
             while(iterator.hasNext()){
                 balanceSheetValues.add((BalanceSheetAttributeValues) iterator.next());
             }*/
-            tx.commit();
             returnValue = BalanceSheetValueResponseTransformer.processResponseForBalanceSheetValueQuery(list);
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
         }
+
         return returnValue;
     }
 
     public void insert(BalanceSheetAttributeValues balanceSheetValues) {
-        Session session = factory.openSession();
-        Transaction tx = null;
+        Session session = factory.getCurrentSession();
         try {
-            tx = session.beginTransaction();
-            session.save(balanceSheetValues);
-            tx.commit();
+            session.saveOrUpdate(balanceSheetValues);
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 
     public void delete(BalanceSheetAttributeValues balanceSheetValues) {
-        Session session = factory.openSession();
-        Transaction tx = null;
+        Session session = factory.getCurrentSession();
         try {
-            tx = session.beginTransaction();
             session.delete(balanceSheetValues);
-            tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 }
